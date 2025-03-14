@@ -63,7 +63,7 @@ function fetchJobs() {
 }
 
 function delete_job(jobId) {
-    fetch('/delete_job/${jobId}/', {
+    fetch(`/delete_job/${jobId}/`, {
         method : 'DELETE',
         headers : {
             'Content-Type':'application/json',
