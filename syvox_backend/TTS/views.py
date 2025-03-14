@@ -13,5 +13,5 @@ def gen_tts(request):
             tts=gTTS(text, lang='en')
             file_path = os.path.join('tts/static', 'output.mp3')
             tts.save(file_path)
-            return render(request, 'tts/index.html', {'audio_file':'output.mp3'})
+            return render(request, 'index.html', {'audio_file':'output.mp3'})
     return HttpResponse("Error:No text provided")
