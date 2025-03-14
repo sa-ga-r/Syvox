@@ -6,4 +6,5 @@ urlpatterns = [
     path('tts/', views.gen_tts),
     path('jobs/', views.fetch_jobs),
     path('create_job/', views.create_job),
+    path('delete_job/<int:job_id>/', views.delete_job),
 ]
