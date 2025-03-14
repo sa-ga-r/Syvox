@@ -35,6 +35,7 @@ def fetch_jobs(request):
         })
     return JsonResponse({'jobs':job_list})
 
+@csrf_exempt
 def create_job(request):
     if request.method == "POST":
         try:
