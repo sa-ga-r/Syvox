@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const jobName = document.getElementById('job_name').value;
                 const description = document.getElementById('description').value;
 
-                fetch('/tts/', {
+                fetch('/jobs/', {
                         method: 'POST',
                         headers: {
                                 'Content-Type': 'application/json',
