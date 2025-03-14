@@ -1,12 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
+
+from django.views.decorators.csrf import csrf_exempt
 from gtts import gTTS
 from .models import TTSJob
 import os
+import json
 
 def index(request):
     return render(request, 'index.html')
 
+@csrf_exempt
 def gen_tts(request):
     if request.method == "POST":
         text = request.POST.get('text')
@@ -30,3 +34,16 @@ def fetch_jobs(request):
             'status' : job.status,
         })
     return JsonResponse({'jobs':job_list})
+
+def create_job(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            job_name = data.get('job_name')
+            description = data.get('description')
+            new_job = TTSJob.objects.create(job_name=job_name, description=description)
+            return JsonResponse({'New job created; ID':new_job.id})
+        except Exception as e:
+            return JsonResponse({'error':str(e)})
+    else:
+        return JsonResponse({'Error':'Invalid request method'})
