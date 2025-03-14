@@ -2,22 +2,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>TTS App</title>
-    </head>
-    <body>
-        <h1>Text-to-Speech App</h1>
-            <form method="POST" action="/tts/">
-                    {% csrf_token %}
-                            <textarea name="text" rows="5" cols="40" placeholder="Enter text here..."></textarea><br><br>
-                                    <input type="submit" value="Generate Speech">
-                                        </form>
-                                            
-                                                {% if audio_file %}
-                                                        <h2>Generated Speech:</h2>
-                                                                <audio controls>
-                                                                            <source src="{% static audio_file %}" type="audio/mp3">
-                                                                                        Your browser does not support the audio element.
-                                                                                                </audio>
-                                                                                                    {% endif %}
-                                                                                                    </body>
-                                                                                                    </html>
+    <title>TTS Jobs List</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        </head>
+        <body>
+                <div id="form-container">
+                        <h2>Create New Job</h2>
+                                <form id="ttsForm">
+                                            <label for="job_name">Job Name:</label><br>
+                                                        <input type="text" id="job_name" name="job_name" placeholder="Enter Job Name" required><br><br>
+                                                                    
+                                                                                <label for="description">Description:</label><br>
+                                                                                            <textarea id="description" name="description" rows="5" cols="40" placeholder="Enter text to convert to speech" required></textarea><br><br>
+                                                                                                        
+                                                                                                                    <input type="button" value="Create New Job">
+                                                                                                                            </form>
+                                                                                                                                </div>
+                                                                                                                                        <div id="table-container">
+                                                                                                                                                <h2>Job List</h2>
+                                                                                                                                                        <table>
+                                                                                                                                                                    <thead>
+                                                                                                                                                                                    <tr>
+                                                                                                                                                                                                        <th>SR.No</th>
+                                                                                                                                                                                                                            <th>Job Title</th>
+                                                                                                                                                                                                                                                <th>Description</th>
+                                                                                                                                                                                                                                                                    <th>Created Date</th>
+                                                                                                                                                                                                                                                                                        <th>File Location</th>
+                                                                                                                                                                                                                                                                                                            <th>Download URL</th>
+                                                                                                                                                                                                                                                                                                                                <th>Status</th>
+                                                                                                                                                                                                                                                                                                                                                    <th>Preview</th>
+                                                                                                                                                                                                                                                                                                                                                                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                </thead>
+                                                                                                                                                                                                                                                                                                                                                                                            <tbody id="jobsTableBody"></tbody>
+                                                                                                                                                                                                                                                                                                                                                                                                    </table>
+                                                                                                                                                                                                                                                                                                                                                                                                        </div>
+
+                                                                                                                                                                                                                                                                                                                                                                                                            <script src="{% static 'tts.js' %}"></script>
+                                                                                                                                                                                                                                                                                                                                                                                                            </body>
+                                                                                                                                                                                                                                                                                                                                                                                                            </html>
