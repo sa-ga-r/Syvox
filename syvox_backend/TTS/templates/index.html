@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>Text-to-Speech App</h1>
-            <form method="POST" action="/generate/">
+            <form method="POST" action="/tts/">
                     {% csrf_token %}
                             <textarea name="text" rows="5" cols="40" placeholder="Enter text here..."></textarea><br><br>
                                     <input type="submit" value="Generate Speech">
