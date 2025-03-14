@@ -63,6 +63,7 @@ function fetchJobs() {
 }
 
 function delete_job(jobId) {
+    console.log(`/delete_job/${jobId}/`)
     fetch(`/delete_job/${jobId}/`, {
         method : 'DELETE',
         headers : {
