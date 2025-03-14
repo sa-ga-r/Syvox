@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-
 from django.views.decorators.csrf import csrf_exempt
 from gtts import gTTS
 from .models import TTSJob
@@ -28,7 +27,7 @@ def fetch_jobs(request):
         job_list.append({
             'job_name': job.job_name,
             'description' : job.description,
-            'created_date' : job.created_data.strftime('$Y-$m-$d $H:$M:$S'),
+            'created_date' : job.created_date.strftime('$Y-$m-$d $H:$M:$S'),
             'file_location' : job.file_location,
             'download_link' : job.download_link,
             'status' : job.status,
