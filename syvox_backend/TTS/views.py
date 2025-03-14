@@ -4,7 +4,7 @@ from gtts import gTTS
 import os
 
 def index(request):
-    return render(request, 'tts/index.html')
+    return render(request, 'index.html')
 
 def gen_tts(request):
     if request.method == "POST":
