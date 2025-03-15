@@ -25,10 +25,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 fetchJobs();
                 form.reset();
             } else {
-                alert('Error: ' + data.error);
+                alert('Error1: ' + data.error);
             }
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => console.error('Error2:', error));
     });
 });
 
