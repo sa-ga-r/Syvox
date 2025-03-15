@@ -21,7 +21,7 @@ def gen_tts(request):
     return HttpResponse("Error:No text provided")
 
 def fetch_jobs(request):
-    jobs = TTSJob.objects.all().order_by('-created_date')
+    jobs = list(TTSJob.objects.order_by('-created_date').values('id', 'job_name', 'description', 'created_date', 'file_location', 'download_link', 'status'))
     job_list = []
     for job in jobs:
         job_list.append({
