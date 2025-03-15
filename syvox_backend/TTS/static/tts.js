@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (data.success) {
                 alert('Job successfully created!');
                 fetchJobs();
-                form.reset();
+                /*form.reset();*/
             } else {
                 alert('Error1: ' + data.error);
             }
