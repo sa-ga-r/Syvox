@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const jobName = document.getElementById('job_name').value;
         const description = document.getElementById('description').value;
 
-        fetch("/create_job/", {
+        fetch('/create_job/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(response => response.json())
         .then(data => {
-            if (data.success) {
+            if (data) {
                 alert('Job successfully created!');
                 fetchJobs();
                 form.reset();
@@ -72,11 +72,11 @@ function delete_job(jobId) {
     })
     .then(response => response.json())
     .then(data => {
-        if (data.success){
+        if (data){
             fetchJobs();
         }
         else {
-            console.log("Error :" + data.error);
+            console.log("Error : deleting data");
         }
     })
     .catch(error => console.log('Error:', error));
