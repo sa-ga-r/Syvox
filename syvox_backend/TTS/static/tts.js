@@ -54,7 +54,7 @@ function fetchJobs() {
                         `<audio controls><source src="${job.download_link}" type="audio/mp3">Your browser does not support the audio element.</audio>` 
                         : 'N/A'}
                     </td>
-                    <td><button onclick="delete_job(${job.id})">Delete</button></td>
+                    <td><button onclick="delete_job(${job.id})">${job.id}</button></td>
                 `;
                 tableBody.appendChild(row);
             });
@@ -70,14 +70,7 @@ function delete_job(jobId) {
             'Content-Type':'application/json',
         }
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data){
-            fetchJobs();
-        }
-        else {
-            console.log("Error : deleting data");
-        }
+    .then(response => {
+        fetchJobs();
     })
-    .catch(error => console.log('Error:', error));
 }
