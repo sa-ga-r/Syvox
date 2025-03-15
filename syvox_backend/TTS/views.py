@@ -50,5 +50,7 @@ def create_job(request):
     
 def delete_job(request, job_id):
     if request.method == 'DELETE':
-        job = TTSJob.objects.get(id=job_id)
+        data = json.loads(request.body)
+        job_id = data.get('id')
+        job = TTSJob.objects.get(job_id)
         job.delete()
