@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const jobName = document.getElementById('job_name').value;
         const description = document.getElementById('description').value;
 
-        fetch('/create_job/', {
+        fetch("/create_job/", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -23,13 +23,13 @@ document.addEventListener('DOMContentLoaded', function () {
             if (data.success) {
                 alert('Job successfully created!');
                 fetchJobs();
-                /*form.reset();*/
+                form.reset();
             } else {
-                alert('Error1: ' + data.error);
+                alert('Error1: data creation failed');
             }
         })
-        .catch(error => console.error('Error2:', error));
-    });
+        .catch(error => console.error('Error2: Network error'));
+    })
 });
 
 function fetchJobs() {
