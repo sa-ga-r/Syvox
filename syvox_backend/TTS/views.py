@@ -48,7 +48,8 @@ def create_job(request):
             return JsonResponse({'error':str(e)})
     else:
         return JsonResponse({'Error':'Invalid request method'})
-    
+        
+@csrf_exempt  
 def delete_job(request, job_id):
     if request.method == 'DELETE':
         job = TTSJob.objects.get(id=job_id)
