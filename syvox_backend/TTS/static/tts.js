@@ -54,7 +54,7 @@ function fetchJobs() {
                         `<audio controls><source src="${job.download_link}" type="audio/mp3">Your browser does not support the audio element.</audio>` 
                         : 'N/A'}
                     </td>
-                    <td><button onclick="delete_job(job.id)" Delete>Delete</button></td>
+                    <td><button onclick="delete_job(${job.id})">Delete</button></td>
                 `;
                 tableBody.appendChild(row);
             });
