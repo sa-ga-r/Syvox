@@ -9,6 +9,7 @@ import json
 def index(request):
     return render(request, 'index.html')
 
+'''
 @csrf_exempt
 def gen_tts(request):
     if request.method == "POST":
@@ -19,6 +20,7 @@ def gen_tts(request):
             tts.save(file_path)
             return render(request, 'index.html', {'audio_file':'output.mp3'})
     return HttpResponse("Error:No text provided")
+'''
 
 def fetch_jobs(request):
     jobs = TTSJob.objects.order_by('-created_date')
@@ -54,3 +56,19 @@ def delete_job(request, job_id):
     if request.method == 'DELETE':
         job = TTSJob.objects.get(id=job_id)
         job.delete()
+
+@csrf_exempt
+def gen_tts(request):
+    if request.method == 'POST':
+        job_id = request.POST.get('job_id')
+        title = request.POST.get('title')
+        text = request.POST.get('text')
+        if not all([job_id, title, text]):
+            return JsonResponse({'status':'Fail', 'message':'Missing required fields'})
+        tts = gTTS(text=text, lang='en')
+        file_name = f"{title}.mp3"
+        file_path = os.path.join('TTS/static/media', file_name)
+        tts.save(file_path)
+        file_url = f"/{file_path}"
+        return JsonResponse({'status':'success', 'file_url':file_url})
+    return JsonResponse({'status':'Fail', 'message':'Invalid request method.'})

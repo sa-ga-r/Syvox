@@ -54,7 +54,10 @@ function fetchJobs() {
                         `<audio controls><source src="${job.download_link}" type="audio/mp3">Your browser does not support the audio element.</audio>` 
                         : 'N/A'}
                     </td>
-                    <td><button onclick="delete_job(${job.id})">Delete</button></td>
+                    <td>
+                    <button onclick="delete_job(${job.id})">Delete</button>
+                    <button onclick="process_job(${job.id}")>Process</button>
+                    </td>
                 `;
                 tableBody.appendChild(row);
             });
@@ -63,7 +66,6 @@ function fetchJobs() {
 }
 
 function delete_job(jobId) {
-    console.log(`/delete_job/${jobId}/`)
     fetch(`/delete_job/${jobId}/`, {
         method : 'DELETE',
         headers : {
@@ -73,4 +75,8 @@ function delete_job(jobId) {
     .then(response => {
         fetchJobs();
     })
+}
+
+function gen_tts(jobId){
+    console.log("TTS processing started...")
 }
