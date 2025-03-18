@@ -9,17 +9,17 @@ import json
 def index(request):
     return render(request, 'index.html')
 
-
 @csrf_exempt
-def gen_tts(request, job_id):
+def gen_tts(request):
     if request.method == "POST":
+        id = request.POST.get('id')
         name = request.POST.get('name')
         text = request.POST.get('text')
         if text:
             tts=gTTS(text, lang='en')
             file_path = os.path.join('TTS/static/media', f'{name}.mp3')
             tts.save(file_path)
-            return render(request, 'index.html', {'audio_file':f'{name}.mp3'})
+            return render(request, 'index.html', {'status':'success', 'file_url':'file_path'})
     return HttpResponse("Error:No text provided")
 
 def fetch_jobs(request):

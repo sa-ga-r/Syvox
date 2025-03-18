@@ -87,7 +87,7 @@ function gen_tts(jobId){
     .then(response => response.json())
     .then(data => {
         if (data.status === 'success'){
-            document.getElementById(`status-${jobId}`).innerText='DONE';
+            document.getElementById(`status-${jobId}`).innerText='DONE1';
             const audioPlayer = document.getElementById('audioPlayer');
             audioPlayer.src = data.file_url;
             audioPlayer.style.display = 'block';
