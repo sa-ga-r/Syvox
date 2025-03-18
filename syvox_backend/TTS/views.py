@@ -60,15 +60,17 @@ def delete_job(request, job_id):
 @csrf_exempt
 def gen_tts(request, job_id):
     if request.method == 'POST':
-        job_id = request.POST.get('job_id')
-        title = request.POST.get('title')
-        text = request.POST.get('text')
-        if not all([job_id, title, text]):
-            return JsonResponse({'status':'Fail', 'message':'Missing required fields'})
+        job = TTSJob.objects.get(job=job_id)
+        text = job.description
+        if not text:
+            return JsonResponse({'status':'error', 'message':'Description is empty.'})
         tts = gTTS(text=text, lang='en')
-        file_name = f"{title}.mp3"
-        file_path = os.path.join('TTS/static', file_name)
+        file_name = f"{job.job_name}_{job_id}.mp3"
+        file_path = os.path.join('static/media/', file_name)
+        os.makedirs('static/media/', exist_ok=True)
         tts.save(file_path)
-        file_url = f"/{file_path}"
-        return JsonResponse({'status':'success', 'file_url':file_url})
-    return JsonResponse({'status':'Fail', 'message':'Invalid request method.'})
+        job.file_location=file_path
+        job.status='DONE'
+        job.save()
+        return JsonResponse({'status':'success', 'file_url':f'/static/media/{file_name}'})
+    return JsonResponse({'status':'error', 'message':'Invalid request method'})
