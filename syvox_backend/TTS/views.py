@@ -63,7 +63,7 @@ def delete_job(request, job_id):
 @csrf_exempt
 def gen_tts(request, job_id):
     if request.method == 'POST':
-        job = TTSJob.objects.get(job=job_id)
+        job = TTSJob.objects.get(id=job_id)
         text = job.description
         if not text:
             return JsonResponse({'status':'error', 'message':'Description is empty.'})
