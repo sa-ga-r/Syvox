@@ -58,7 +58,7 @@ def delete_job(request, job_id):
         job.delete()
 
 @csrf_exempt
-def gen_tts(request):
+def gen_tts(request, job_id):
     if request.method == 'POST':
         job_id = request.POST.get('job_id')
         title = request.POST.get('title')
