@@ -9,8 +9,9 @@ import json
 def index(request):
     return render(request, 'index.html')
 
+'''
 @csrf_exempt
-def gen_tts(request):
+def gen_tts(request, job_id):
     if request.method == "POST":
         id = request.POST.get('id')
         name = request.POST.get('name')
@@ -21,6 +22,7 @@ def gen_tts(request):
             tts.save(file_path)
             return render(request, 'index.html', {'status':'success', 'file_url':'file_path'})
     return HttpResponse("Error:No text provided")
+'''
 
 def fetch_jobs(request):
     jobs = TTSJob.objects.order_by('-created_date')
@@ -57,7 +59,7 @@ def delete_job(request, job_id):
         job = TTSJob.objects.get(id=job_id)
         job.delete()
 
-'''
+
 @csrf_exempt
 def gen_tts(request, job_id):
     if request.method == 'POST':
@@ -67,12 +69,11 @@ def gen_tts(request, job_id):
             return JsonResponse({'status':'error', 'message':'Description is empty.'})
         tts = gTTS(text=text, lang='en')
         file_name = f"{job.job_name}_{job_id}.mp3"
-        file_path = os.path.join('static/media/', file_name)
-        os.makedirs('static/media/', exist_ok=True)
+        file_path = os.path.join('TTS/static/media/', file_name)
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
         tts.save(file_path)
-        job.file_location=file_path
+        job.file_location=f'/TTS/static/media/{file_name}'
         job.status='DONE'
         job.save()
-        return JsonResponse({'status':'success', 'file_url':f'/static/media/{file_name}'})
+        return JsonResponse({'status':'success', 'file_url':job.file_location})
     return JsonResponse({'status':'error', 'message':'Invalid request method'})
-'''

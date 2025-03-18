@@ -46,12 +46,11 @@ function fetchJobs() {
                     <td>${job.job_name}</td>
                     <td>${job.description.substring(0, 20)}...</td>
                     <td>${job.created_date}</td>
-                    <td>${job.file_location || 'N/A'}</td>
-                    <td>${job.download_link ? `<a href="${job.download_link}" download>Download</a>` : 'N/A'}</td>
-                    <td>${job.status}</td>
-                    <td>
-                        ${job.download_link && job.status === 'DONE' ? 
-                        `<audio controls><source src="${job.download_link}" type="audio/mp3">Your browser does not support the audio element.</audio>` 
+                    <td id="file-location-${job.id}">${job.file_location || 'N/A'}</td>
+                    <td id="download-link-${job.id}">${job.file_location ? `<a href="${job.file_location}" download>Download</a>` : 'N/A'}</td>
+                    <td id="status-${job.id}">${job.status}</td>
+                    <td id="audio-player-${job.id}">${job.file_location && job.status === 'DONE' ? 
+                        `<audio controls><source src="${job.file_location}" type="audio/mp3">Your browser does not support the audio element.</audio>` 
                         : 'N/A'}
                     </td>
                     <td>
@@ -87,10 +86,13 @@ function gen_tts(jobId){
     .then(response => response.json())
     .then(data => {
         if (data.status === 'success'){
-            document.getElementById(`status-${jobId}`).innerText='DONE1';
-            const audioPlayer = document.getElementById('audioPlayer');
-            audioPlayer.src = data.file_url;
-            audioPlayer.style.display = 'block';
+            document.getElementById(`status-${jobId}`).innerText='DONE';
+            document.getElementById(`file-location-${jobId}`).innerText=data.file_url;
+            document.getElementById(`download-link-${jobId}`).innerHTML=`<a href="${data.file_url}" download>Download</a>`;
+            document.getElementById(`audio-player-${jobId}`).innerHTML=`<audio controls><source src="${data.file_url}" type="audio/mp3"> Your browser does not support audio element.</audio>`;
+        } else {
+            alert(`Error processing TTS: ${data.message}`);
         }
     })
+    .catch(error => console.error("Error generating TTS:", error));
 }
