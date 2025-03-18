@@ -56,7 +56,7 @@ function fetchJobs() {
                     </td>
                     <td>
                     <button onclick="delete_job(${job.id})">Delete</button>
-                    <button onclick="gen_tts()>Process</button>
+                    <button onclick="gen_tts(${job.id}")>Process</button>
                     </td>
                 `;
                 tableBody.appendChild(row);
@@ -77,7 +77,7 @@ function delete_job(jobId) {
     })
 }
 
-function gen_tts(){
+function gen_tts(jobId){
     fetch('/tts/', {
         method : 'POST',
         headers : {
@@ -87,9 +87,10 @@ function gen_tts(){
     .then(response => response.json())
     .then(data => {
         if (data.status === 'success'){
-            document.getElementById(`status-${jobId}`).innerText='Completed';
-            const audioPlayer = document.getElementById(`audio-${jobId}`);
+            document.getElementById(`status-${jobId}`).innerText='DONE';
+            const audioPlayer = document.getElementById('audioPlayer');
             audioPlayer.src = data.file_url;
+            audioPlayer.style.display = 'block';
         }
     })
 }
