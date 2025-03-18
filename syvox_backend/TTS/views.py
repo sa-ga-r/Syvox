@@ -11,7 +11,7 @@ def index(request):
 
 
 @csrf_exempt
-def gen_tts(request):
+def gen_tts(request, job_id):
     if request.method == "POST":
         name = request.POST.get('name')
         text = request.POST.get('text')
