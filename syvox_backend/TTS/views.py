@@ -67,7 +67,7 @@ def gen_tts(request):
             return JsonResponse({'status':'Fail', 'message':'Missing required fields'})
         tts = gTTS(text=text, lang='en')
         file_name = f"{title}.mp3"
-        file_path = os.path.join('TTS/static/media', file_name)
+        file_path = os.path.join('TTS/static', file_name)
         tts.save(file_path)
         file_url = f"/{file_path}"
         return JsonResponse({'status':'success', 'file_url':file_url})
