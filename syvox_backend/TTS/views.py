@@ -58,6 +58,7 @@ def delete_job(request, job_id):
     if request.method == 'DELETE':
         job = TTSJob.objects.get(id=job_id)
         job.delete()
+    return JsonResponse({'status':'success', 'message':'Job deleted successfully'})
 
 @csrf_exempt
 def gen_tts(request, job_id):
