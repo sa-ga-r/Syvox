@@ -70,7 +70,8 @@ def gen_tts(request, job_id):
         tts = gTTS(text=text, lang='en')
         file_name = f"{job.job_name.replace(' ', '_')}_{job_id}.mp3"
         #file_path = os.path.join('TTS/static/', file_name)
-        file_path = os.path.join(settings.BASE_DIR, 'TTS', 'static')
+        #file_path = os.path.join(settings.BASE_DIR, 'TTS', 'static')
+        file_path = os.path.join(os.getcwd(), 'TTS/static', file_name)
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         tts.save(file_path)
         job.file_location=os.path.join(file_path, file_name)
