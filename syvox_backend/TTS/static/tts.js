@@ -87,7 +87,7 @@ function gen_tts(jobId){
     .then(data => {
         if (data.status === 'success'){
             document.getElementById(`status-${jobId}`).innerText='DONE';
-            /*document.getElementById(`file-location-${jobId}`).innerText=data.file_location;*/
+            document.getElementById(`file-location-${jobId}`).innerText=data.file_location;
             document.getElementById(`download-link-${jobId}`).innerHTML=`<a href="${data.file_location}" download>Download</a>`;
             document.getElementById(`audio-player-${jobId}`).innerHTML=`<audio controls><source src="${data.file_location}" type="audio/mp3"> Your browser does not support audio element.</audio>`;
         } else {

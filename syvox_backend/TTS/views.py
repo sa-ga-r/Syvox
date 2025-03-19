@@ -69,7 +69,7 @@ def gen_tts(request, job_id):
             return JsonResponse({'status':'error', 'message':'Description is empty.'})
         tts = gTTS(text=text, lang='en')
         file_name = f"{job.job_name.replace(' ', '_')}_{job_id}.mp3"
-        file_path = os.path.join('TTS/static/', file_name)
+        file_path = os.path.join('TTS/static/')
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         tts.save(file_path)
         job.file_location=os.path.join(file_path, file_name)
