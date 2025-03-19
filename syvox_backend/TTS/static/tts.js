@@ -50,7 +50,7 @@ function fetchJobs() {
                     <td id="download-link-${job.id}">${job.file_location ? `<a href="${job.file_location}" download>Download</a>` : 'N/A'}</td>
                     <td id="status-${job.id}">${job.status}</td>
                     <td id="audio-player-${job.id}">${job.file_location && job.status === 'DONE' ? 
-                        `<audio controls><source src="${job.file_location}" type="audio/mp3">Your browser does not support the audio element.</audio>` 
+                        `<audio controls><source src="${job.audio_file}" type="audio/mp3">Your browser does not support the audio element.</audio>` 
                         : 'N/A'}
                     </td>
                     <td>
@@ -87,9 +87,9 @@ function gen_tts(jobId){
     .then(data => {
         if (data.status === 'success'){
             document.getElementById(`status-${jobId}`).innerText='DONE';
-            document.getElementById(`file-location-${jobId}`).innerText=data.file_url;
-            document.getElementById(`download-link-${jobId}`).innerHTML=`<a href="${data.file_url}" download>Download</a>`;
-            document.getElementById(`audio-player-${jobId}`).innerHTML=`<audio controls><source src="${data.file_url}" type="audio/mp3"> Your browser does not support audio element.</audio>`;
+            document.getElementById(`file-location-${jobId}`).innerText=data.file_location;
+            document.getElementById(`download-link-${jobId}`).innerHTML=`<a href="${data.file_location}" download>Download</a>`;
+            document.getElementById(`audio-player-${jobId}`).innerHTML=`<audio controls><source src="${data.audio_file}" type="audio/mp3"> Your browser does not support audio element.</audio>`;
         } else {
             alert(`Error processing TTS: ${data.message}`);
         }

@@ -74,5 +74,5 @@ def gen_tts(request, job_id):
         job.file_location=f'/TTS/static/{file_name}'
         job.status='DONE'
         job.save()
-        return JsonResponse({'status':'success', 'file_url':job.file_location})
+        return JsonResponse({'status':'success', 'audio_file':file_name})
     return JsonResponse({'status':'error', 'message':'Invalid request method'})
