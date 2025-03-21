@@ -70,15 +70,16 @@ def gen_tts(request, job_id):
         if not text:
             return JsonResponse({'status':'error', 'message':'Description is empty.'})
         tts = gTTS(text=text, lang='en')
-        if audio_file_j == ' ':
-            file_name = f"{job.job_name.replace(' ', '_')}_{job_id}.mp3"
-        if file_location_j == ' ':
-            file_path = os.path.join('TTS/','static/', file_name)
+        file_name = f"{job.job_name.replace(' ', '_')}_{job_id}.mp3"
+        file_path = os.path.join('TTS/','static/', file_name)
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         tts.save(file_path)
         job.file_location=os.path.join(file_path)
         job.status='DONE'
         job.save()
         TTSJob.objects.create(file_location=f'static/{file_name}', audio_file=f'static/{file_name}')
-        return JsonResponse({'status':'success', 'audio_file':f'static/{file_name}', 'file_location':f'static/{file_name}'})
+        if file_location_j and audio_file_j:
+            return JsonResponse({'status':'success', 'audio_file':f'static/{file_name}', 'file_location':f'static/{file_name}'})
+        else:
+            return JsonResponse({'status':'success', 'audio_file':audio_file_j, 'file_location':file_location_j})
     return JsonResponse({'status':'error', 'message':'Invalid request method'})
