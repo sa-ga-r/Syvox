@@ -64,6 +64,7 @@ function fetchJobs() {
         .catch(error => console.error('Error:', error));
 }
 
+
 function delete_job(jobId) {
     fetch(`/delete_job/${jobId}/`, {
         method : 'DELETE',
@@ -89,8 +90,8 @@ function gen_tts(jobId){
             document.getElementById(`status-${jobId}`).innerText='DONE';
             document.getElementById(`file-location-${jobId}`).innerText=data.file_location;
             document.getElementById(`download-link-${jobId}`).innerHTML=`<a href="${data.file_location}" download>Download</a>`;
-            const audio_player = document.getElementById(`audio-player-${jobId}`).innerHTML=`<audio controls><source src="${data.audio_file}" type="audio/mp3"> Your browser does not support audio element.</audio>`;
-            audio_player.src = data.audio_file;
+            const audio_player = document.getElementById(`audio-player-${jobId}`).innerHTML=`<audio controls><source src="${data.file_location}" type="audio/mp3"> Your browser does not support audio element.</audio>`;
+            audio_player.src = data.file_location;
         } else {
             alert(`Error processing TTS: ${data.message}`);
         }

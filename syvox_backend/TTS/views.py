@@ -34,6 +34,7 @@ def fetch_jobs(request):
             'description' : job.description,
             'created_date' : job.created_date.strftime('%Y-%m-%d %H:%M:%S'),
             'file_location' : job.file_location,
+            'audio_file' : job.audio_file,
             'download_link' : job.download_link,
             'status' : job.status,
         })
