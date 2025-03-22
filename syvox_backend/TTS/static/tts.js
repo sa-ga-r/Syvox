@@ -89,7 +89,8 @@ function gen_tts(jobId){
             document.getElementById(`status-${jobId}`).innerText='DONE';
             document.getElementById(`file-location-${jobId}`).innerText=data.file_location;
             document.getElementById(`download-link-${jobId}`).innerHTML=`<a href="${data.file_location}" download>Download</a>`;
-            document.getElementById(`audio-player-${jobId}`).innerHTML=`<audio controls><source src="${data.audio_file}" type="audio/mp3"> Your browser does not support audio element.</audio>`;
+            const audio_player = document.getElementById(`audio-player-${jobId}`).innerHTML=`<audio controls><source src="${data.audio_file}" type="audio/mp3"> Your browser does not support audio element.</audio>`;
+            audio_player.src = data.audio_file;
         } else {
             alert(`Error processing TTS: ${data.message}`);
         }
