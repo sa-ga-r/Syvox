@@ -7,7 +7,7 @@ import os
 import json
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'index1.html')
 
 '''
 @csrf_exempt
