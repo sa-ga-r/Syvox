@@ -6,7 +6,7 @@ from .models import TTSJob
 import os
 import json
 
-def index(request):
+def index1(request):
     return render(request, 'index1.html')
 
 '''
