@@ -7,7 +7,7 @@ class STTJob(models.Model):
     file_location = models.CharField(max_length=150, default="N/A")
     download_link = models.CharField(max_length=150, default="N/A")
     status = models.CharField(max_length=20, default='PENDING')
-    text_file = models.CharField(blank=True, default='N/A')
+    text_file = models.CharField(max_length=150, default='N/A')
 
     def __str__(self):
         return self.job_name
