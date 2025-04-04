@@ -1,3 +1,13 @@
 from django.db import models
 
-# Create your models here.
+class STTJob(models.Model):
+    job_name = models.CharField(max_length=150)
+    description = models.TextField(blank=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+    file_location = models.CharField(max_length=150, default="N/A")
+    download_link = models.CharField(blank=True, null=True, default="N/A")
+    status = models.CharField(max_length=20, default='PENDING')
+    text_file = models.TextField(blank=True, default='N/A')
+
+    def __str__(self):
+        return self.job_name
