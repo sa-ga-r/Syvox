@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const jobName = document.getElementById('job_name').value;
         const description = document.getElementById('description').value;
 
-        fetch('/create_job/', {
+        fetch('TTS/create_job/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function fetchJobs() {
-    fetch('/jobs/')
+    fetch('TTS/jobs/')
         .then(response => response.json())
         .then(data => {
             const tableBody = document.getElementById('jobsTableBody');
@@ -66,7 +66,7 @@ function fetchJobs() {
 
 
 function delete_job(jobId) {
-    fetch(`/delete_job/${jobId}/`, {
+    fetch(`TTS/delete_job/${jobId}/`, {
         method : 'DELETE',
         headers : {
             'Content-Type':'application/json',
