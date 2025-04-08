@@ -9,16 +9,21 @@ document.addEventListener('DOMContentLoaded', function () {
         const description = document.getElementById('description').value;
         const audioFile = document.getElementById('upload_file');
         const file = audioFile.files[0];
+        const formData = new formData();
+        formData.append("upload_file", file);
+        formData.append("job_name", jobName);
+        formData.append("description", description);
 
         fetch('/stt_create_job/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
+            body:formData,
+            /*body: JSON.stringify({
                 job_name: jobName,
                 description: description,
-                file_location: file
+                file_location: file*/
             })
         })
         .then(response => response.json())
@@ -33,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .catch(error => console.error('Error2: Network error'));
     })
-});
+/*});*/
 
 function fetchJobs() {
     fetch('/stt_jobs/')
