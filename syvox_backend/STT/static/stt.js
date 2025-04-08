@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
             body: JSON.stringify({
                 job_name: jobName,
                 description: description,
-                audio_file: audioFile
+                file_location: audioFile
             })
         })
         .then(response => response.json())
