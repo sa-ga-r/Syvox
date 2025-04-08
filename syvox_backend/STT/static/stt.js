@@ -16,10 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         fetch('/stt_create_job/', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body:formData,
+            body:formData
             /*body: JSON.stringify({
                 job_name: jobName,
                 description: description,
