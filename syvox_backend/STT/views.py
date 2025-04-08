@@ -2,8 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import speech_recognition as sr
+from pydub import AudioSegment
 from .models import STTJob
 import os
+import datetime
 import json
 
 def index(request):
@@ -72,4 +74,36 @@ def gen_tts(request, job_id):
 
 @csrf_exempt
 def gen_stt(request, job_id):
-    return JsonResponse({'status':'success', 'job_id':job_id})
+    if request.method == "POST" and request.FILES.get('audio_file'):
+        audio_file = request.FILES['audio_file']
+        og_filename = audio_file.name
+        ext = os.path.splitext(og_filename)[1].lower()
+        static_dir = os.path.join(settings.BASE_DIR, 'static')
+        os.makedirs(static_dir, exist_ok=True)
+        audio_path = os.path.join(static_dir, og_filename)
+        with open(audio_path, 'wb+') as f:
+            for chunk in audio_file.chunks():
+                f.write(chunk)
+            if ext == '.mp3':
+                sound = AudioSegment.from_mp3(audio_path)
+                wav_path = audio_path.replace('.mp3', '.wav')
+                sound.export(wav_path, format="wav")
+            else:
+                wav_path = audio_path
+            recognizer = sr.Recognizer()
+            with sr.AudioFile(wav_path) as source:
+                audio_data = recognizer.record(source)
+            try:
+                stt = recognizer.recognize_google(audio_data)
+            except sr.UnknownValueError:
+                stt = "Could not understand audio."
+            except sr.RequestError as e:
+                stt = f"Speech recognition error:{e}"
+            timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
+            base_name = os.path.splitext(og_filename)[0]
+            txt_filename = f"job{base_name}_{job_id}.txt"
+            txt_path = os.path.join(static_dir, txt_filename)
+            with open(txt_path, 'w', encoding='utf-8') as text_file:
+                txt_file.write(stt)
+                return JsonResponse({"status":"success", "job_id":job_id, "filename":txt_filename, "file_path":txt_path, "download_link":f"/static/{txt_filename}", "datetime":timestamp})
+    return JsonResponse({"status":"error"})
