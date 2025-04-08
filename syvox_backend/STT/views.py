@@ -32,7 +32,8 @@ def stt_create_job(request):
             data = json.loads(request.body)
             job_name = data.get('job_name')
             description = data.get('description')
-            new_job = STTJob.objects.create(job_name=job_name, description=description)
+            audio_file = data.get('file_location')
+            new_job = STTJob.objects.create(job_name=job_name, description=description, audio_file=audio_file)
             return JsonResponse({'New job created; ID':new_job.id})
         except Exception as e:
             return JsonResponse({'error':str(e)})
