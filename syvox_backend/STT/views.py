@@ -39,10 +39,12 @@ def stt_create_job(request):
             if audio_file:
                 static_dir = os.path.join(settings.BASE_DIR, 'static')
                 os.makedirs(static_dir, exist_ok=True)
-                audio_path = os.path.join(static_dir, audio_file.name)
+                audio_filename = audio_file.name
+                audio_path = os.path.join(static_dir, audio_filename)
                 with open(audio_path, 'wb+') as f:
                     for chunk in audio_file.chunks():
                         f.write(chunk)
+                download_link = f"/static/{audio_filename}"
             new_job = STTJob.objects.create(job_name=job_name, description=description, file_location=audio_path, download_link = download_link)
             return JsonResponse({'New job created; ID':new_job.id})
         except Exception as e:
