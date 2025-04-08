@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 import speech_recognition as sr
 from pydub import AudioSegment
 from .models import STTJob
+from django.conf import settings
 import os
 import datetime
 import json
