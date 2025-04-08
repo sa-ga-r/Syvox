@@ -9,7 +9,7 @@ import json
 def index(request):
     return render(request, 'index.html')
 
-def fetch_jobs(request):
+def stt_fetch_jobs(request):
     jobs = STTJob.objects.order_by('-created_date')
     job_list = []
     for job in jobs:
@@ -26,7 +26,7 @@ def fetch_jobs(request):
     return JsonResponse({'jobs':job_list})
 
 @csrf_exempt
-def create_job(request):
+def stt_create_job(request):
     if request.method == "POST":
         try:
             data = json.loads(request.body)
@@ -40,7 +40,7 @@ def create_job(request):
         return JsonResponse({'Error':'Invalid request method'})
         
 @csrf_exempt  
-def delete_job(request, job_id):
+def stt_delete_job(request, job_id):
     if request.method == 'DELETE':
         job = STTJob.objects.get(id=job_id)
         job.delete()
