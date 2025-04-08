@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from .TTS import views
 
 urlpatterns = [
     path('TTS/', views.index1, name='index1'),
