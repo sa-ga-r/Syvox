@@ -23,9 +23,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 file_location: file
             })*/
         })
-        .then(response => response.json(), console.log(response))
+        .then(response => response.json())
+        .then(response => console.log("Responce:",response))
         .then(data => {
-            console.log(data)
+            console.log("Data:",data)
             if (data) {
                 alert('Job successfully created!');
                 fetchJobs();

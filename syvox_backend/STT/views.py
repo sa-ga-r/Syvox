@@ -31,11 +31,18 @@ def stt_fetch_jobs(request):
 def stt_create_job(request):
     if request.method == "POST":
         try:
-            data = json.loads(request.body)
-            job_name = data.get('job_name')
-            description = data.get('description')
-            audio_file = data.get('file_location')
-            new_job = STTJob.objects.create(job_name=job_name, description=description, audio_file=audio_file)
+            job_name = request.POST.get("job_name")
+            description = request.POST.get('description')
+            audio_file = request.FILES.get('upload_file')
+            audio_path = ''
+            if audio_file:
+                static_dir = os.path.join(settings.BASE_DIR, 'static')
+                os.makedirs(static_dir, exist_ok=True)
+                audio_path = os.path.join(static_dir, audio_file.name)
+                with open(audio_path, 'wb+') as f:
+                    for chunk in audio_file.chunks():
+                        f.write(chunk)
+            new_job = STTJob.objects.create(job_name=job_name, description=description, file_location=audio_path, download_link = download_link)
             return JsonResponse({'New job created; ID':new_job.id})
         except Exception as e:
             return JsonResponse({'error':str(e)})
