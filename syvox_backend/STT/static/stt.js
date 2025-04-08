@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const jobName = document.getElementById('job_name').value;
         const description = document.getElementById('description').value;
+        const audioFile = document.getElementById('upload_file').value;
 
         fetch('/stt_create_job/', {
             method: 'POST',
@@ -15,7 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             body: JSON.stringify({
                 job_name: jobName,
-                description: description
+                description: description,
+                audio_file: audioFile
             })
         })
         .then(response => response.json())
