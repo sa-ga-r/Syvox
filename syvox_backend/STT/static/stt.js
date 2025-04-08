@@ -23,8 +23,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 file_location: file
             })*/
         })
-        .then(response => response.json())
+        .then(response => response.json(), console.log(response))
         .then(data => {
+            console.log(data)
             if (data) {
                 alert('Job successfully created!');
                 fetchJobs();
@@ -68,7 +69,6 @@ function fetchJobs() {
         })
         .catch(error => console.error('Error:', error));
 }
-
 
 function delete_job(jobId) {
     fetch(`/stt_delete_job/${jobId}/`, {
