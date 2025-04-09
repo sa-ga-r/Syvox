@@ -115,6 +115,6 @@ def gen_stt(request, job_id):
             txt_filename = f"job{base_name}_{job_id}.txt"
             txt_path = os.path.join(static_dir, txt_filename)
             with open(txt_path, 'w', encoding='utf-8') as text_file:
-                txt_file.write(stt)
+                text_file.write(stt)
                 return JsonResponse({"status":"success", "job_id":job_id, "filename":txt_filename, "file_path":txt_path, "download_link":f"/static/{txt_filename}", "datetime":timestamp})
     return JsonResponse({"status":"error"})
