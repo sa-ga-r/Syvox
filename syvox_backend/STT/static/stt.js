@@ -24,9 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })*/
         })
         .then(response => response.json())
-        .then(response => console.log("Responce:",response))
         .then(data => {
-            console.log("Data:",data)
             if (data) {
                 alert('Job successfully created!');
                 fetchJobs();
