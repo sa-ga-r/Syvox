@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.apps import apps
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import speech_recognition as sr
@@ -7,7 +8,6 @@ from .models import STTJob
 from django.conf import settings
 import os
 import datetime
-import json
 
 def index(request):
     return render(request, 'index.html')
@@ -37,7 +37,8 @@ def stt_create_job(request):
             audio_file = request.FILES.get('upload_file')
             audio_path = ''
             if audio_file:
-                static_dir = os.path.join(settings.BASE_DIR, 'static')
+                app_dir = apps.get_app_config('STT').path
+                static_dir = os.path.join(app_dir, 'static')
                 os.makedirs(static_dir, exist_ok=True)
                 audio_filename = audio_file.name
                 audio_path = os.path.join(static_dir, audio_filename)
