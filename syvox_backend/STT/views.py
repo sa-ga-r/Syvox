@@ -45,14 +45,14 @@ def stt_create_job(request):
                 with open(audio_path, 'wb+') as f:
                     for chunk in audio_file.chunks():
                         f.write(chunk)
-                download_link = f"/static/{audio_filename}"
-            new_job = STTJob.objects.create(job_name=job_name, description=description, file_location=audio_file.name, download_link = download_link)
+                #download_link = f"/static/{audio_filename}"
+            new_job = STTJob.objects.create(job_name=job_name, description=description, file_location=audio_file.name)
             return JsonResponse({'New job created; ID':new_job.id})
         except Exception as e:
             return JsonResponse({'error':str(e)})
     else:
         return JsonResponse({'Error':'Invalid request method'})
-        
+
 @csrf_exempt  
 def stt_delete_job(request, job_id):
     if request.method == 'DELETE':
