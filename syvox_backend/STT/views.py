@@ -85,7 +85,46 @@ def gen_tts(request, job_id):
 
 @csrf_exempt
 def gen_stt(request, job_id):
-    if request.method == "POST" and request.FILES.get('audio_file'):
+    if request.method == "POST":
+        try:
+            job = STTJob.objects.get(id=job_id)
+            app_dir = apps.get_app_config('STT').path
+            static_dir = os.path.join(app_dir, 'static')
+            audio_path = os.path.join(static_dir, job.file_location)
+            ext = os.path.splitext(audio_path)[1].lower()
+            if ext == '.mp3':
+                sound = AudioSegment.from_mp3(audio_path)
+                wav_path = audio_path.replace('.mp3', '.wav')
+                sound.export(wav_path, format="wav")
+            else:
+                wav_path = audio_path
+            recognizer = sr.Recognizer()
+            with sr.AudioFile(wav_path) as source:
+                audio_data = recognizer.record(source)
+            try:
+                stt = recognizer.recognize_google(audio_data)
+            except sr.UnknownValueError:
+                stt = "Could not understand audio."
+            except sr.RequestError as e:
+                stt = f"Speech recognition error: {e}"
+            timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
+            base_name = os.path.splitext(job.file_location)[0]
+            txt_filename = f"job{base_name}_{job_id}.txt"
+            txt_path = os.path.join(static_dir, txt_filename)
+            with open(txt_path, 'w', encoding='utf-8') as text_file:
+                text_file.write(stt)
+            job.text_file = txt_filename
+            job.download_link = f"/static/{txt_filename}"
+            job.status = "DONE"
+            job.save()
+            return JsonResponse({'status':'success', 'job_id':job.id, 'filename':txt_filename, 'file_path':txt_path, "download_url":f"/static/{txt_filename}"})
+        except STTJob.DoesNotExist:
+            return JsonResponse({"status":"error", "message":"Job ID does not exists"})
+    return JsonResponse({"status":"error", "message":"Invalid request method"})
+
+
+
+'''
         audio_file = request.FILES['audio_file']
         og_filename = audio_file.name
         ext = os.path.splitext(og_filename)[1].lower()
@@ -117,4 +156,4 @@ def gen_stt(request, job_id):
             with open(txt_path, 'w', encoding='utf-8') as text_file:
                 text_file.write(stt)
                 return JsonResponse({"status":"success", "job_id":job_id, "filename":txt_filename, "file_path":txt_path, "download_link":f"/static/{txt_filename}", "datetime":timestamp})
-    return JsonResponse({"status":"error"})
+    return JsonResponse({"status":"error"}) '''
