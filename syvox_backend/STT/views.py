@@ -46,7 +46,7 @@ def stt_create_job(request):
                     for chunk in audio_file.chunks():
                         f.write(chunk)
                 download_link = f"/static/{audio_filename}"
-            new_job = STTJob.objects.create(job_name=job_name, description=description, file_location=audio_path, download_link = download_link)
+            new_job = STTJob.objects.create(job_name=job_name, description=description, file_location=audio_file.name, download_link = download_link)
             return JsonResponse({'New job created; ID':new_job.id})
         except Exception as e:
             return JsonResponse({'error':str(e)})
