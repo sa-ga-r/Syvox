@@ -93,6 +93,7 @@ function gen_stt(jobId){
             /*document.getElementById(`file-location-${jobId}`).innerText=data.file_location;*/
             document.getElementById(`download-link-${jobId}`).innerHTML=`<a href="${data.download_url}" download>Download</a>`;
             document.getElementById(`preview-${jobId}`).innerHTML='<div class="preview-text">${data.preview}</div>';
+        fetchJobs();
         } else {
             alert(`Error processing STT: ${data.message}`);
         }
