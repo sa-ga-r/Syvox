@@ -98,8 +98,8 @@ function gen_stt(jobId){
         } else {
             alert(`Error processing STT: ${data.message}`);
         }
-        document.body.style.cursor = "default";
+        document.getElementById('overlay-spinner').style.display='block';
     })
     .catch(error => console.error("Error generating STT:", error));
-    document.body.style.cursor = "default";
+    document.getElementById('overlay-spinner').style.display='none';
 }
