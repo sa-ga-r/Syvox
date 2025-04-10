@@ -80,7 +80,6 @@ function delete_job(jobId) {
 }
 
 function gen_stt(jobId){
-    document.getElementById('overlay-spinner').style.display='block';
     fetch(`/gen_stt/${jobId}/`, {
         method : 'POST',
         headers : {
@@ -98,8 +97,6 @@ function gen_stt(jobId){
         } else {
             alert(`Error processing STT: ${data.message}`);
         }
-        document.getElementById('overlay-spinner').style.display='none';
     })
     .catch(error => console.error("Error generating STT:", error));
-    document.getElementById('overlay-spinner').style.display='none';
 }
