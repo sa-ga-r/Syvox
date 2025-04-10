@@ -80,6 +80,7 @@ function delete_job(jobId) {
 }
 
 function gen_stt(jobId){
+    document.body.style.cursor = 'wait';
     fetch(`/gen_stt/${jobId}/`, {
         method : 'POST',
         headers : {
@@ -97,6 +98,8 @@ function gen_stt(jobId){
         } else {
             alert(`Error processing STT: ${data.message}`);
         }
+        document.body.style.cursor = "default";
     })
     .catch(error => console.error("Error generating STT:", error));
+    document.body.style.cursor = "default";
 }
