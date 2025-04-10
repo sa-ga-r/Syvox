@@ -54,9 +54,7 @@ function fetchJobs() {
                     <td id="file-location-${job.id}">${job.file_location || 'N/A'}</td>
                     <td id="download-link-${job.id}">${job.file_location ? `<a href="${job.file_location}" download>Download</a>` : 'N/A'}</td>
                     <td id="status-${job.id}">${job.status}</td>
-                    <td id="audio-player-${job.id}">${job.file_location && job.status === 'DONE' ?
-                        `<audio controls><source src="${job.audio_file}" type="audio/mp3">Your browser does not support the audio element.</audio>`
-                        : 'N/A'}
+                    <td id="preview-${job.id}">${job.status === 'DONE' ? (job.preview || 'No preview') : 'N/A'}
                     </td>
                     <td>
                     <button onclick="delete_job(${job.id})">Delete</button>
