@@ -94,10 +94,10 @@ function gen_stt(jobId){
             document.getElementById(`status-${jobId}`).innerText='DONE';
             document.getElementById(`file-location-${jobId}`).innerText=data.file_location;
             document.getElementById(`download-link-${jobId}`).innerHTML=`<a href="${data.download_url}" download>Download</a>`;
-            const audio_player = document.getElementById(`audio-player-${jobId}`).innerHTML='<div class="preview-text">${data.preview}</div>';
+            document.getElementById(`audio-player-${jobId}`).innerHTML='<div class="preview-text">${data.preview}</div>';
         } else {
-            alert(`Error processing TTS: ${data.message}`);
+            alert(`Error processing STT: ${data.message}`);
         }
     })
-    .catch(error => console.error("Error generating TTS:", error));
+    .catch(error => console.error("Error generating STT:", error));
 }
