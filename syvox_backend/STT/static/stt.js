@@ -52,9 +52,9 @@ function fetchJobs() {
                     <td>${job.description.substring(0, 20)}...</td>
                     <td>${job.created_date}</td>
                     <td id="file-location-${job.id}">${job.file_location || 'N/A'}</td>
-                    <td id="download-link-${job.id}">${job.file_location ? `<a href="${job.file_location}" download>Download</a>` : 'N/A'}</td>
+                    <td id="download-link-${job.id}">${job.download_url ? `<a href="${job.download_url}" download>Download</a>` : 'N/A'}</td>
                     <td id="status-${job.id}">${job.status}</td>
-                    <td id="preview-${job.id}">${job.status === 'DONE' ? (job.preview || 'No preview') : 'N/A'}
+                    <td id="preview-${job.id}">${job.status === 'DONE' ? (job.preview) : 'N/A'}
                     </td>
                     <td>
                     <button onclick="delete_job(${job.id})">Delete</button>
