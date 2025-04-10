@@ -52,7 +52,7 @@ function fetchJobs() {
                     <td>${job.description.substring(0, 20)}...</td>
                     <td>${job.created_date}</td>
                     <td id="file-location-${job.id}">${job.file_location || 'N/A'}</td>
-                    <td id="download-link-${job.id}">${job.download_url ? `<a href="${job.download_url}" download>Download</a>` : 'N/A'}</td>
+                    <td id="download-link-${job.id}">${job.download_link ? `<a href="${job.download_link}" download>Download</a>` : 'N/A'}</td>
                     <td id="status-${job.id}">${job.status}</td>
                     <td id="preview-${job.id}">${job.status === 'DONE' ? (job.preview) : 'N/A'}
                     </td>
@@ -90,7 +90,7 @@ function gen_stt(jobId){
     .then(data => {
         if (data.status === 'success'){
             document.getElementById(`status-${jobId}`).innerText='DONE';
-            document.getElementById(`download-link-${jobId}`).innerHTML=`<a href="${data.download_url}" download>Download</a>`;
+            document.getElementById(`download-link-${jobId}`).innerHTML=`<a href="${data.download_link}" download>Download</a>`;
             document.getElementById(`preview-${jobId}`).innerHTML='<div class="preview-text">${data.preview}</div>';
         fetchJobs();
         } else {
