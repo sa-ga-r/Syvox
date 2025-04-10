@@ -82,7 +82,7 @@ function delete_job(jobId) {
 }
 
 function gen_tts(jobId){
-    fetch(`/tts/${jobId}/`, {
+    fetch(`/gen_tts/${jobId}/`, {
         method : 'POST',
         headers : {
             'Content-Type':'application/json',
