@@ -90,8 +90,8 @@ function gen_stt(jobId){
     .then(data => {
         if (data.status === 'success'){
             document.getElementById(`status-${jobId}`).innerText='DONE';
-            document.getElementById(`download-link-${jobId}`).innerHTML=`<a href="${data.download_link}" download>Download</a>`;
-            document.getElementById(`preview-${jobId}`).innerHTML='<div class="preview-text">${data.preview}</div>';
+            document.getElementById(`download-link-${jobId}`).innerHTML=`<a href="${data.download_url}" download>Download</a>`;
+            document.getElementById(`preview-${jobId}`).innerHTML=`<div class="preview-text">${data.preview}</div>`;
         fetchJobs();
         } else {
             alert(`Error processing STT: ${data.message}`);
