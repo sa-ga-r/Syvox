@@ -54,7 +54,7 @@ function fetchJobs() {
                     <td id="file-location-${job.id}">${job.file_location || 'N/A'}</td>
                     <td id="download-link-${job.id}">${job.download_link ? `<a href="${job.download_link}" download>Download</a>` : 'N/A'}</td>
                     <td id="status-${job.id}">${job.status}</td>
-                    <td id="preview-${job.id}">${job.status === 'DONE' ? job.preview || '...' : 'Pending'}
+                    <td id="preview-${job.id}">${job.download_link ? `<a href="${job.download_link}" target="_blank">Open</a>`:'N/A'}</td>
                     </td>
                     <td>
                     <button onclick="delete_job(${job.id})">Delete</button>
