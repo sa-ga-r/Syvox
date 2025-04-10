@@ -113,7 +113,7 @@ def gen_stt(request, job_id):
             txt_path = os.path.join(static_dir, txt_filename)
             with open(txt_path, 'w', encoding='utf-8') as text_file:
                 text_file.write(stt)
-            preview = text_file[:20] + '...' if len(text_file) > 20 else text_file
+            preview = stt[:20] + '...' if len(stt) > 20 else stt
             job.text_file = txt_filename
             job.download_link = f"/static/{txt_filename}"
             job.status = "DONE"
