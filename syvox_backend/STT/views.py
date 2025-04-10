@@ -113,12 +113,11 @@ def gen_stt(request, job_id):
             txt_path = os.path.join(static_dir, txt_filename)
             with open(txt_path, 'w', encoding='utf-8') as text_file:
                 text_file.write(stt)
-            preview = text_file
             job.text_file = txt_filename
             job.download_link = f"/static/{txt_filename}"
             job.status = "DONE"
             job.save()
-            return JsonResponse({'status':'success', 'job_id':job.id, 'filename':txt_filename, 'file_path':txt_path, "download_url":f"/static/{txt_filename}", "preview":preview})
+            return JsonResponse({'status':'success', 'job_id':job.id, 'filename':txt_filename, 'file_path':txt_path, "download_url":f"/static/{txt_filename}"})
         except STTJob.DoesNotExist:
             return JsonResponse({"status":"error", "message":"Job ID does not exists"})
     return JsonResponse({"status":"error", "message":"Invalid request method"})
