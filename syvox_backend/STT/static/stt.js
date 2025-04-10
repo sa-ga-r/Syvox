@@ -60,7 +60,7 @@ function fetchJobs() {
                     </td>
                     <td>
                     <button onclick="delete_job(${job.id})">Delete</button>
-                    <button onclick="gen_tts(${job.id})">Process</button>
+                    <button onclick="gen_stt(${job.id})">Process</button>
                     </td>
                 `;
                 tableBody.appendChild(row);
