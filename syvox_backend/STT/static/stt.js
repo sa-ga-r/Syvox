@@ -92,9 +92,9 @@ function gen_stt(jobId){
     .then(data => {
         if (data.status === 'success'){
             document.getElementById(`status-${jobId}`).innerText='DONE';
-            document.getElementById(`file-location-${jobId}`).innerText=data.file_location;
+            /*document.getElementById(`file-location-${jobId}`).innerText=data.file_location;*/
             document.getElementById(`download-link-${jobId}`).innerHTML=`<a href="${data.download_url}" download>Download</a>`;
-            document.getElementById(`audio-player-${jobId}`).innerHTML='<div class="preview-text">${data.preview}</div>';
+            document.getElementById(`preview-${jobId}`).innerHTML='<div class="preview-text">${data.preview}</div>';
         } else {
             alert(`Error processing STT: ${data.message}`);
         }
