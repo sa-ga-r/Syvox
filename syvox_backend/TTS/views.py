@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from gtts import gTTS
@@ -6,10 +5,10 @@ from .models import TTSJob
 import os
 import json
 
-def index1(request):
-    return render(request, 'index1.html')
 
 '''
+def index1(request):
+    return render(request, 'index1.html')
 @csrf_exempt
 def gen_tts(request, job_id):
     if request.method == "POST":
