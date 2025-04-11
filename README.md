@@ -1,2 +1,1 @@
-# Syvox
-Full stack SAAS demo for AI STT and TTS
+# SAAS demo Backend for AI STT and TTS
