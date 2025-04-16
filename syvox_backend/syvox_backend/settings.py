@@ -51,7 +51,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "corsheaders.middlewere.CorsMiddlewere",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "syvox_backend.urls"
