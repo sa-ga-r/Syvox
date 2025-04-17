@@ -123,6 +123,10 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = ['*']
+CORS_ALLOW_METHODS = ['DELETE', 'GET', 'POST']
+CORS_URLS_REGEX = r'^/.*$'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
