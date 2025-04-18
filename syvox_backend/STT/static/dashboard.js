@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function fetchJobs() {
-    fetch('/stt_jobs/')
+    fetch('/tts_fetch_jobs/')
         .then(response => response.json())
         .then(data => {
             const tableBody = document.getElementById('jobsTableBody');
@@ -32,7 +32,7 @@ function fetchJobs() {
 }
 
 function delete_job(jobId) {
-    fetch(`/stt_delete_job/${jobId}/`, {
+    fetch(`/tts_delete_job/${jobId}/`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ function delete_job(jobId) {
 }
 
 function gen_stt(jobId) {
-    fetch(`/gen_stt/${jobId}/`, {
+    fetch(`/gen_tts/${jobId}/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
