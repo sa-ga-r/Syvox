@@ -1,4 +1,5 @@
 from django.apps import apps
+from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import speech_recognition as sr
@@ -8,8 +9,11 @@ from django.conf import settings
 import os
 import datetime
 
-#def index(request):
-    #return render(request, 'index.html')
+def index(request):
+    return render(request, 'index.html')
+
+def dashboard(request):
+    return render(request, 'dashboard.html')
 
 def stt_fetch_jobs(request):
     jobs = STTJob.objects.order_by('-created_date')
