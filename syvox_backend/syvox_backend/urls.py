@@ -17,10 +17,11 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from STT import views as stt_views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', include('STT.urls')),
+    path('', stt_views.dashboard),
     path('TTS/', include('TTS.urls')),
     path('STT/', include('STT.urls')),
 ]
