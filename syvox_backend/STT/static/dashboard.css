@@ -1,119 +1,115 @@
-/* DigitalOcean Dashboard Theme */
 :root {
-    --do-dark-blue: #002b4e;
-    --do-blue: #0069ff;
-    --do-light-bg: #f9fbfd;
-    --do-border: #dce3ea;
-    --do-header-bg: #e9eff5;
-    --do-hover: #f1f5f9;
-    --do-text: #1a1a1a;
-    --do-secondary: #6b7c93;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    --blue-light: #e0f4ff;
+    --blue-mid: #89cfff;
+    --blue-main: #1d8fff;
+    --blue-dark: #1469b6;
+    --text-main: #1a1a1a;
+    --white: #ffffff;
+    --border-color: #bcdffb;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--do-light-bg);
-    color: var(--do-text);
+    font-family: Arial, sans-serif;
+    background-color: var(--blue-light);
+    color: var(--text-main);
 }
 
 /* Title Bar */
 .title-bar {
-    background-color: var(--do-dark-blue);
-    color: white;
-    padding: 14px 24px;
+    background-color: var(--blue-dark);
+    color: var(--white);
+    padding: 10px 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .title-bar .logo {
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .title-bar .user {
-    font-size: 14px;
-    opacity: 0.85;
+    font-size: 13px;
 }
 
 /* Navbar */
 .navbar {
-    background-color: #ffffff;
-    border-bottom: 1px solid var(--do-border);
+    background-color: var(--blue-mid);
     display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--border-color);
 }
 
 .navbar a {
-    color: var(--do-text);
-    text-decoration: none;
-    padding: 12px 0;
+    color: var(--text-main);
     flex: 1;
     text-align: center;
-    font-weight: 500;
-    transition: background 0.2s ease;
+    padding: 10px 0;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: var(--blue-light);
+    border-right: 1px solid var(--border-color);
+}
+
+.navbar a:last-child {
+    border-right: none;
 }
 
 .navbar a:hover {
-    background-color: var(--do-hover);
+    background-color: var(--blue-main);
+    color: var(--white);
 }
 
 /* Table Container */
 .table-container {
-    margin: 30px auto;
+    margin: 20px auto;
     max-width: 95%;
-    background-color: #fff;
-    border: 1px solid var(--do-border);
-    border-radius: 8px;
-    overflow-x: auto;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    padding: 24px;
+    background-color: var(--white);
+    border: 2px solid var(--border-color);
+    padding: 15px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 thead {
-    background-color: var(--do-header-bg);
-    color: var(--do-text);
-    font-weight: 600;
+    background-color: var(--blue-mid);
+    color: var(--text-main);
 }
 
 th,
 td {
-    padding: 12px 10px;
-    border-bottom: 1px solid var(--do-border);
+    padding: 10px;
+    border: 1px solid var(--border-color);
     text-align: center;
-    white-space: nowrap;
+}
+
+tr:nth-child(even) {
+    background-color: var(--blue-light);
 }
 
 tr:hover {
-    background-color: var(--do-hover);
+    background-color: #d3efff;
 }
 
 /* Buttons */
 button {
-    padding: 6px 12px;
-    margin: 2px;
-    background-color: var(--do-blue);
-    color: white;
+    background-color: var(--blue-main);
+    color: var(--white);
     border: none;
-    border-radius: 4px;
-    font-size: 13px;
+    padding: 5px 10px;
+    font-size: 12px;
     cursor: pointer;
+    border-radius: 2px;
+    margin: 2px;
 }
 
 button:hover {
-    background-color: #0054d1;
+    background-color: var(--blue-dark);
 }
