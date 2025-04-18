@@ -1,3 +1,14 @@
+:root {
+    --dark-blue: #232f3e;
+    --medium-blue: #37475a;
+    --light-gray: #f3f4f6;
+    --table-header: #f7fafc;
+    --border-color: #e1e4e8;
+    --hover-bg: #e9eef6;
+    --button-blue: #0073bb;
+    --button-hover: #005fa3;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,31 +16,34 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
+    font-family: "Segoe UI", sans-serif;
+    background-color: var(--light-gray);
+    color: #222;
 }
 
+/* Title Bar */
 .title-bar {
-    background-color: #2d2d2d;
-    color: #fff;
-    padding: 10px 20px;
+    background-color: var(--dark-blue);
+    color: white;
+    padding: 12px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .title-bar .logo {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 22px;
+    font-weight: 600;
 }
 
 .title-bar .user {
     font-size: 14px;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
+/* Navigation */
 .navbar {
-    background-color: #444;
+    background-color: var(--medium-blue);
     display: flex;
     justify-content: space-around;
     padding: 10px 0;
@@ -38,58 +52,68 @@ body {
 .navbar a {
     color: white;
     text-decoration: none;
-    padding: 8px 16px;
-    transition: background 0.3s ease;
+    padding: 10px 20px;
     flex: 1;
     text-align: center;
+    transition: background 0.3s ease;
 }
 
 .navbar a:hover {
-    background-color: #666;
+    background-color: #46566b;
 }
 
+/* Table Container */
 .table-container {
-    margin: 20px auto;
+    margin: 24px auto;
     max-width: 95%;
-    overflow-x: auto;
     background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+    padding: 24px;
 }
 
+/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
+    font-size: 14px;
 }
 
 thead {
-    background-color: #333;
-    color: #fff;
+    background-color: var(--table-header);
+    color: #333;
+    font-weight: 600;
 }
 
 th,
 td {
     padding: 12px 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     text-align: center;
-    word-wrap: break-word;
+    white-space: nowrap;
 }
 
 tr:nth-child(even) {
-    background-color: #f4f4f4;
+    background-color: #fafafa;
 }
 
+tr:hover {
+    background-color: var(--hover-bg);
+}
+
+/* Buttons */
 button {
-    padding: 5px 10px;
+    padding: 6px 12px;
     margin: 2px;
-    background-color: #4CAF50;
+    background-color: var(--button-blue);
     color: white;
     border: none;
-    cursor: pointer;
     border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: var(--button-hover);
 }
