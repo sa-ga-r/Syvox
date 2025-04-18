@@ -1,122 +1,131 @@
+:root {
+    --blue-light: #0d1117;
+    --blue-mid: #161b22;
+    --blue-main: #1f6feb;
+    --blue-dark: #0c2d61;
+    --text-main: #c9d1d9;
+    --white: #f0f6fc;
+    --border-color: #30363d;
+    --green-main: #2ea043;
+    --green-hover: #238636;
+}
+
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-family: Arial, sans-serif;
+    background-color: var(--blue-light);
+    color: var(--text-main);
     margin: 0;
-    padding: 0;
-    background-color: #0d1117;
-    color: #c9d1d9;
-    box-sizing: border-box;
 }
 
 .title-bar {
-    background-color: #0d1117;
+    background-color: var(--blue-dark);
+    color: var(--white);
+    padding: 12px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 24px;
-    border-bottom: 1px solid #30363d;
 }
 
-.logo {
-    font-size: 24px;
+.title-bar .logo {
+    font-size: 22px;
     font-weight: bold;
-    color: #58a6ff;
-    border: 2px solid #58a6ff;
-    padding: 6px 12px;
-    border-radius: 50px;
     font-family: 'Courier New', monospace;
+    color: var(--blue-main);
+    border: 2px solid var(--blue-main);
+    border-radius: 50px;
+    padding: 6px 12px;
+    letter-spacing: 1px;
 }
 
-.user-info {
-    color: #c9d1d9;
+.title-bar .user {
     font-size: 14px;
+    color: var(--text-main);
 }
 
 .navbar {
-    background-color: #161b22;
+    background-color: var(--blue-mid);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.navbar a {
+    color: var(--blue-main);
+    flex: 1;
+    text-align: center;
     padding: 10px 0;
-    border-bottom: 1px solid #30363d;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 40px;
-    margin: 0;
-    padding: 0;
-}
-
-.nav-links a {
-    color: #58a6ff;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: bold;
+    background-color: var(--blue-light);
+    border-right: 1px solid var(--border-color);
 }
 
-.nav-links a:hover {
-    text-decoration: underline;
+.navbar a:last-child {
+    border-right: none;
 }
 
-#table-container {
-    margin: 20px;
-    padding: 20px;
-    background-color: #0d1117;
-    border: 1px solid #30363d;
-    border-radius: 8px;
-    overflow-x: auto;
+.navbar a:hover {
+    background-color: var(--blue-main);
+    color: var(--white);
+}
+
+.table-container {
+    margin: 20px auto;
+    max-width: 95%;
+    background-color: var(--blue-light);
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    color: #c9d1d9;
-    background-color: #0d1117;
+    font-size: 14px;
+    background-color: var(--blue-light);
+    color: var(--text-main);
+}
+
+thead {
+    background-color: var(--blue-mid);
+    color: var(--white);
 }
 
 th,
 td {
     padding: 10px;
-    border: 1px solid #30363d;
-    text-align: left;
+    border: 1px solid var(--border-color);
+    text-align: center;
 }
 
-th {
+tr:nth-child(even) {
     background-color: #161b22;
 }
 
+tr:hover {
+    background-color: #21262d;
+}
+
 button {
-    background-color: #2ea043;
+    background-color: var(--green-main);
     color: white;
     border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 12px;
     cursor: pointer;
-    font-weight: 500;
+    border-radius: 4px;
+    margin: 2px;
 }
 
 button:hover {
-    background-color: #238636;
+    background-color: var(--green-hover);
 }
 
 a {
-    color: #58a6ff;
+    color: var(--blue-main);
 }
 
-.loader {
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #58a6ff;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
+a:hover {
+    color: var(--white);
 }
