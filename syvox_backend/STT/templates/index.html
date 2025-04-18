@@ -19,7 +19,7 @@
                                 placeholder="Enter description about text" required></textarea><br><br>
 
                         <label for="upload_file">Upload mp3 or wav audio file:</label><br>
-                        <input type ="file" id="upload_file" name="upload_file" accept=".mp3, .wav" required><br><br>
+                        <input type="file" id="upload_file" name="upload_file" accept=".mp3, .wav" required><br><br>
 
                         <input type="submit" value="Create New Job">
                 </form>
@@ -43,19 +43,20 @@
                         <tbody id="jobsTableBody"></tbody>
                 </table>
         </div>
-        <div id="overlay_spinner" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(255, 255, 255, 0.7); z-index:9999; text-align: center;">
-            <div style="margin-top:40vh;">
-                <div class="loader"></div>
-                <p>Processing...</p>
-            </div>
+        <div id="overlay_spinner"
+                style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(255, 255, 255, 0.7); z-index:9999; text-align: center;">
+                <div style="margin-top:40vh;">
+                        <div class="loader"></div>
+                        <p>Processing...</p>
+                </div>
         </div>
 
         <script src="{% static 'stt.js' %}"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
         <script>
-            eruda.init();
-            </script>
+                eruda.init();
+        </script>
 </body>
 
 </html>
