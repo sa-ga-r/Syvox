@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-=yn^xaqy-^mr+bcp#c!i-h0nw6ar62dn*c)1c(9z=55hr^p6%x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'https://symmetrical-space-spoon-56qg5vjqr65cv5pw-8000.app.github.dev', 'https://cautious-space-zebra-qrq76vjqpqw3xx46-5173.app.github.dev']
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -40,13 +40,11 @@ INSTALLED_APPS = [
     "TTS",
     "rest_framework",
     "STT",
-    "corsheaders",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -121,12 +119,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = "static/"
-
-CORS_ALLOWED_ORIGINS = ["https://cautious-space-zebra-qrq76vjqpqw3xx46-5173.app.github.dev"]
-CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_HEADERS = ['*']
-CORS_ALLOW_METHODS = ['DELETE', 'GET', 'POST']
-CORS_URLS_REGEX = r'^/.*$'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
