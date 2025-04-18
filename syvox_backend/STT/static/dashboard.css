@@ -1,94 +1,95 @@
-/* Base styles */
-body {
-    font-family: Arial, sans-serif;
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Navbar styles */
-.navbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #333;
-    color: white;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+}
+
+.title-bar {
+    background-color: #2d2d2d;
+    color: #fff;
     padding: 10px 20px;
-    position: relative;
-}
-
-.nav-brand {
-    position: absolute;
-    left: 20px;
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.nav-links {
-    list-style: none;
     display: flex;
-    gap: 30px;
-    margin: 0;
-    padding: 0;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.nav-links li {
-    display: inline;
+.title-bar .logo {
+    font-size: 20px;
+    font-weight: bold;
 }
 
-.nav-links a {
+.title-bar .user {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.navbar {
+    background-color: #444;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+
+.navbar a {
     color: white;
     text-decoration: none;
-    font-size: 16px;
+    padding: 8px 16px;
+    transition: background 0.3s ease;
+    flex: 1;
+    text-align: center;
 }
 
-.nav-links a:hover {
-    text-decoration: underline;
+.navbar a:hover {
+    background-color: #666;
 }
 
-/* Container styles */
-#table-container {
-    margin: 20px;
+.table-container {
+    margin: 20px auto;
+    max-width: 95%;
+    overflow-x: auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
 }
 
-/* Table styles */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
+}
+
+thead {
+    background-color: #333;
+    color: #fff;
 }
 
 th,
 td {
-    padding: 10px;
+    padding: 12px 10px;
     border: 1px solid #ddd;
-    text-align: left;
+    text-align: center;
+    word-wrap: break-word;
 }
 
-th {
+tr:nth-child(even) {
     background-color: #f4f4f4;
 }
 
-/* Loader styles */
-.loader {
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #3498db;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    animation: spin 1s linear infinite;
+button {
+    padding: 5px 10px;
+    margin: 2px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
 }
 
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
+button:hover {
+    background-color: #45a049;
 }

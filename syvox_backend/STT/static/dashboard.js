@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function fetchAllJobs() {
     Promise.all([
-        fetch('STT/stt_jobs/').then(res => res.json()),
-        fetch('TTS/tts_jobs/').then(res => res.json())
+        fetch('/STT/stt_jobs/').then(res => res.json()),
+        fetch('/TTS/tts_jobs/').then(res => res.json())
     ])
         .then(([sttData, ttsData]) => {
             sttJobsData = sttData.jobs || [];
@@ -23,8 +23,8 @@ function renderTable() {
     tableBody.innerHTML = '';
 
     const allJobs = [
-        ...sttJobsData.map(job => ({ ...job, source: 'STT' })),
-        ...ttsJobsData.map(job => ({ ...job, source: 'TTS' }))
+        ...sttJobsData.map(job => ({ ...job, type: 'STT' })),
+        ...ttsJobsData.map(job => ({ ...job, type: 'TTS' }))
     ];
 
     if (allJobs.length === 0) {
@@ -33,52 +33,52 @@ function renderTable() {
     }
 
     allJobs.forEach((job, index) => {
+        const fileName = job.file_location?.split('/').pop() || 'N/A';
+
         const row = document.createElement('tr');
         row.innerHTML = `
-                                                                                                                                                        <td>${index + 1}</td>
-                                                                                                                                                                    <td>${job.source}</td>
-                                                                                                                                                                                <td>${job.job_name}</td>
-                                                                                                                                                                                            <td>${job.description?.substring(0, 20) || 'N/A'}...</td>
-                                                                                                                                                                                                        <td>${job.created_date || 'N/A'}</td>
-                                                                                                                                                                                                                    <td>${job.file_location || 'N/A'}</td>
-                                                                                                                                                                                                                                <td>${job.download_link ? `<a href="${job.download_link}" download>Download</a>` : 'N/A'}</td>
-                                                                                                                                                                                                                                            <td>${job.status || 'N/A'}</td>
-                                                                                                                                                                                                                                                        <td>${job.download_link ? `<a href="${job.download_link}" target="_blank">Open</a>` : 'N/A'}</td>
-                                                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                                                                    ${job.source === 'STT' ? `
-                                                                                                                                                                                                                                                                                                        <button onclick="delete_job(${job.id})">Delete</button>
-                                                                                                                                                                                                                                                                                                                            <button onclick="gen_stt(${job.id})">Process</button>
-                                                                                                                                                                                                                                                                                                                                            ` : 'N/A'}
-                                                                                                                                                                                                                                                                                                                                                        </td>
-                                                                                                                                                                                                                                                                                                                                                                `;
+                                                                                                                                                                                        <td>${index + 1}</td>
+                                                                                                                                                                                                    <td>${job.type}</td>
+                                                                                                                                                                                                                <td>${job.job_name || 'N/A'}</td>
+                                                                                                                                                                                                                            <td>${job.description?.substring(0, 30) || 'N/A'}...</td>
+                                                                                                                                                                                                                                        <td>${job.created_date || 'N/A'}</td>
+                                                                                                                                                                                                                                                    <td>${fileName}</td>
+                                                                                                                                                                                                                                                                <td>${job.download_link ? `<a href="${job.download_link}" download>Download</a>` : 'N/A'}</td>
+                                                                                                                                                                                                                                                                            <td>${job.status || 'N/A'}</td>
+                                                                                                                                                                                                                                                                                        <td>${job.download_link ? `<a href="${job.download_link}" target="_blank">Open</a>` : 'N/A'}</td>
+                                                                                                                                                                                                                                                                                                    <td>
+                                                                                                                                                                                                                                                                                                                    <button onclick="${job.type === 'STT' ? `gen_stt(${job.id})` : `gen_tts(${job.id})`}">Process</button>
+                                                                                                                                                                                                                                                                                                                                    <button onclick="${job.type === 'STT' ? `delete_stt(${job.id})` : `delete_tts(${job.id})`}">Delete</button>
+                                                                                                                                                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                                                                                                                                                        `;
         tableBody.appendChild(row);
     });
 }
 
-function delete_job(jobId) {
-    fetch(`/stt_delete_job/${jobId}/`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }).then(() => fetchAllJobs());
+function delete_stt(jobId) {
+    fetch(`/STT/stt_delete_job/${jobId}/`, { method: 'DELETE' })
+        .then(() => fetchAllJobs());
 }
 
 function gen_stt(jobId) {
-    fetch(`/gen_stt/${jobId}/`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
-        .then(response => response.json())
+    fetch(`/STT/gen_stt/${jobId}/`, { method: 'POST' })
+        .then(res => res.json())
         .then(data => {
-            if (data.status === 'success') {
-                alert("STT processing completed!");
-                fetchAllJobs();
-            } else {
-                alert(`Error: ${data.message}`);
-            }
-        })
-        .catch(error => console.error("Error generating STT:", error));
+            alert(data.status === 'success' ? 'STT processing done!' : `Error: ${data.message}`);
+            fetchAllJobs();
+        });
+}
+
+function delete_tts(jobId) {
+    fetch(`/TTS/tts_delete_job/${jobId}/`, { method: 'DELETE' })
+        .then(() => fetchAllJobs());
+}
+
+function gen_tts(jobId) {
+    fetch(`/TTS/tts/${jobId}/`, { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+            alert(data.status === 'success' ? 'TTS processing done!' : `Error: ${data.message}`);
+            fetchAllJobs();
+        });
 }
