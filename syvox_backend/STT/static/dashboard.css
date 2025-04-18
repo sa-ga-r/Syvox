@@ -27,10 +27,10 @@ body {
 }
 
 .title-bar .logo {
-    font-size: 22px;
-    font-weight: 700;
+    font-size: 24px;
+    font-weight: 900;
     font-family: 'Courier New', monospace;
-    color: var(--blue-main);
+    color: var(--white);
     /*border: 2px solid var(--blue-main);
     border-radius: 50px;*/
     padding: 6px 12px;
@@ -81,7 +81,8 @@ body {
 
 table {
     width: 100%;
-    border-collapse: collapse;
+    border: 1px var(--blue-main);
+    /*border-collapse: collapse;*/
     font-size: 14px;
     background-color: var(--blue-light);
     color: var(--text-main);
@@ -90,6 +91,7 @@ table {
 thead {
     background-color: var(--blue-mid);
     color: var(--white);
+    font-weight: bold;
 }
 
 th,
