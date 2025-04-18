@@ -8,6 +8,15 @@
 </head>
 
 <body>
+    <nav class="navbar">
+        <div class="nav-brand">MyApp</div>
+        <ul class="nav-links">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="/stt">STT</a></li>
+            <li><a href="/tts">TTS</a></li>
+        </ul>
+    </nav>
+
     <div id="table-container">
         <h2>Job List</h2>
         <table>
@@ -38,9 +47,7 @@
 
     <script src="{% static 'dashboard.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-    <script>
-        eruda.init();
-    </script>
+    <script>eruda.init();</script>
 </body>
 
 </html>
