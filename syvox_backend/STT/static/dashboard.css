@@ -29,7 +29,7 @@ body {
 .title-bar .logo {
     font-size: 24px;
     font-weight: 900;
-    font-family: 'Courier New', monospace;
+    font-family: 'open sans extra bold', sans-serif;
     color: var(--white);
     /*border: 2px solid var(--blue-main);
     border-radius: 50px;*/
