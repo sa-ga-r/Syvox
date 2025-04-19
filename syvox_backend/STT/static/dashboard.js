@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function fetchAllJobs() {
     Promise.all([
-        fetch('/STT/stt_jobs/').then(res => res.json()),
-        fetch('/TTS/tts_jobs/').then(res => res.json())
+        fetch('stt_jobs/').then(res => res.json()),
+        fetch('tts_jobs/').then(res => res.json())
     ])
         .then(([sttData, ttsData]) => {
             sttJobsData = sttData.jobs || [];
