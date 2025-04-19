@@ -27,7 +27,7 @@ body {
 }
 
 .title-bar .logo {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 900;
     font-family: 'open sans extra bold', sans-serif;
     color: var(--white);
