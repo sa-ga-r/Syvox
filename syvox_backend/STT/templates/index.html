@@ -1,62 +1,80 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-        <title>STT Jobs List</title>
-        <link rel="stylesheet" href="{% static 'stt.css' %}">
+    <meta charset="UTF-8">
+    <title>STT Jobs List</title>
+    <link rel="stylesheet" href="{% static 'stt.css' %}">
 </head>
 
 <body>
-        <div id="form-container">
-                <h2>Create New STT Job</h2>
-                <form id="ttsForm">
-                        <label for="job_name">Job Name:</label><br>
-                        <input type="text" id="job_name" name="job_name" placeholder="Enter Job Name" required><br><br>
+    <!-- Title Bar -->
+    <div class="title-bar">
+        <div class="logo">SYVOX</div>
+        <div class="user">Welcome, User</div>
+    </div>
 
-                        <label for="description">Description:</label><br>
-                        <textarea id="description" name="description" rows="5" cols="40"
-                                placeholder="Enter description about text" required></textarea><br><br>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/">Dashboard</a>
+        <a href="/sttpg/">STT</a>
+        <a href="/ttspg/">TTS</a>
+    </nav>
 
-                        <label for="upload_file">Upload mp3 or wav audio file:</label><br>
-                        <input type="file" id="upload_file" name="upload_file" accept=".mp3, .wav" required><br><br>
+    <!-- Form Container -->
+    <div id="form-container">
+        <h2>Create New STT Job</h2>
+        <form id="ttsForm">
+            <label for="job_name">Job Name:</label><br>
+            <input type="text" id="job_name" name="job_name" placeholder="Enter Job Name" required><br><br>
 
-                        <input type="submit" value="Create New Job">
-                </form>
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" rows="5" cols="40" placeholder="Enter description about text"
+                required></textarea><br><br>
+
+            <label for="upload_file">Upload mp3 or wav audio file:</label><br>
+            <input type="file" id="upload_file" name="upload_file" accept=".mp3, .wav" required><br><br>
+
+            <input type="submit" value="Create New Job">
+        </form>
+    </div>
+
+    <!-- Jobs Table -->
+    <div id="table-container">
+        <h2>Job List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>SR.No</th>
+                    <th>Job Title</th>
+                    <th>Description</th>
+                    <th>Created Date</th>
+                    <th>File Location</th>
+                    <th>Download URL</th>
+                    <th>Status</th>
+                    <th>Preview</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="jobsTableBody"></tbody>
+        </table>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="overlay_spinner"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(255, 255, 255, 0.7); z-index:9999; text-align: center;">
+        <div style="margin-top:40vh;">
+            <div class="loader"></div>
+            <p>Processing...</p>
         </div>
-        <div id="table-container">
-                <h2>Job List</h2>
-                <table>
-                        <thead>
-                                <tr>
-                                        <th>SR.No</th>
-                                        <th>Job Title</th>
-                                        <th>Description</th>
-                                        <th>Created Date</th>
-                                        <th>File Location</th>
-                                        <th>Download URL</th>
-                                        <th>Status</th>
-                                        <th>Preview</th>
-                                        <th>Action</th>
-                                </tr>
-                        </thead>
-                        <tbody id="jobsTableBody"></tbody>
-                </table>
-        </div>
-        <div id="overlay_spinner"
-                style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(255, 255, 255, 0.7); z-index:9999; text-align: center;">
-                <div style="margin-top:40vh;">
-                        <div class="loader"></div>
-                        <p>Processing...</p>
-                </div>
-        </div>
+    </div>
 
-        <script src="{% static 'stt.js' %}"></script>
-
-        <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-        <script>
-                eruda.init();
-        </script>
+    <script src="{% static 'stt.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    <script>
+        eruda.init();
+    </script>
 </body>
 
 </html>
