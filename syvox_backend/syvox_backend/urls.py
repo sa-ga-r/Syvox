@@ -23,8 +23,8 @@ from TTS.views import index1 as tts_index
 urlpatterns = [
     #path("admin/", admin.site.urls),
     path('', dashboard),
-    path('tts/', tts_index),
-    path('stt/', stt_index),
+    path('ttspg/', tts_index),
+    path('sttpg/', stt_index),
     path('STT/', include('STT.urls')),
     path('TTS/', include('TTS.urls')),
 ]
