@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const jobName = document.getElementById('job_name').value;
         const description = document.getElementById('description').value;
 
-        fetch('TTS/tts_create_job/', {
+        fetch(`TTS/tts_create_job/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function fetchJobs() {
-    fetch('TTS/tts_jobs/')
+    fetch(`TTS/tts_jobs/`)
         .then(response => response.json())
         .then(data => {
             const tableBody = document.getElementById('jobsTableBody');

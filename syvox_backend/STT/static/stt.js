@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
         formData.append("job_name", jobName);
         formData.append("description", description);
 
-        fetch('STT/stt_create_job/', {
+        fetch(`STT/stt_create_job/`, {
             method: 'POST',
             body: formData
         })
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function fetchJobs() {
-    fetch('STT/stt_jobs/')
+    fetch(`STT/stt_jobs/`)
         .then(response => response.json())
         .then(data => {
             const tableBody = document.getElementById('jobsTableBody');
