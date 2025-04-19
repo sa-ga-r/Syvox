@@ -4,75 +4,65 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TTS Jobs List</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'tts.css' %}">
 </head>
 
 <body>
-    <!-- Navbar Section -->
+    <!-- Title Bar -->
+    <div class="title-bar">
+        <div class="logo">SYVOX</div>
+        <div class="user">Welcome, User</div>
+    </div>
+
+    <!-- Navbar -->
     <nav class="navbar">
-        <div class="navbar-container">
-            <div class="logo">TTS Dashboard</div>
-            <ul class="navbar-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/stt/">STT</a></li>
-                <li><a href="/tts/">TTS</a></li>
-                <li><a href="/profile/">Profile</a></li>
-            </ul>
-        </div>
+        <a href="/">Dashboard</a>
+        <a href="/sttpg/">STT</a>
+        <a href="/ttspg/">TTS</a>
     </nav>
 
-    <div class="container">
-        <!-- Header Section -->
-        <div class="title-bar">
-            <div class="logo">TTS Dashboard</div>
-            <div class="user">Welcome User</div>
-        </div>
+    <!-- Form Container -->
+    <div id="form-container">
+        <h2>Create New TTS Job</h2>
+        <form id="ttsForm">
+            <label for="job_name">Job Name:</label><br>
+            <input type="text" id="job_name" name="job_name" placeholder="Enter Job Name" required><br><br>
 
-        <!-- Form Section -->
-        <div id="form-container">
-            <h2>Create New TTS Job</h2>
-            <form id="ttsForm">
-                <label for="job_name">Job Name:</label><br>
-                <input type="text" id="job_name" name="job_name" placeholder="Enter Job Name" required><br><br>
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" rows="5" cols="40"
+                placeholder="Enter text to convert to speech" required></textarea><br><br>
 
-                <label for="description">Description:</label><br>
-                <textarea id="description" name="description" rows="5" cols="40"
-                    placeholder="Enter text to convert to speech" required></textarea><br><br>
-
-                <input type="submit" value="Create New Job">
-            </form>
-        </div>
-
-        <!-- Job Table Section -->
-        <div id="table-container">
-            <h2>Job List</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>SR.No</th>
-                        <th>Job Title</th>
-                        <th>Description</th>
-                        <th>Created Date</th>
-                        <th>File Location</th>
-                        <th>Download URL</th>
-                        <th>Status</th>
-                        <th>Preview</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="jobsTableBody"></tbody>
-            </table>
-        </div>
-
-        <script src="{% static 'tts.js' %}"></script>
-
-        <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-        <script>
-            eruda.init();
-        </script>
+            <input type="submit" value="Create New Job">
+        </form>
     </div>
+
+    <!-- Jobs Table -->
+    <div id="table-container">
+        <h2>Job List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>SR.No</th>
+                    <th>Job Title</th>
+                    <th>Description</th>
+                    <th>Created Date</th>
+                    <th>File Location</th>
+                    <th>Download URL</th>
+                    <th>Status</th>
+                    <th>Preview</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="jobsTableBody"></tbody>
+        </table>
+    </div>
+
+    <script src="{% static 'tts.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    <script>
+        eruda.init();
+    </script>
 </body>
 
 </html>
