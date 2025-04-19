@@ -17,11 +17,12 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from STT import views as stt_views
+from STT.views import dashboard, index as stt_index
+from TTS.views import index1 as tts_index
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path('', stt_views.dashboard),
-    path('TTS/', include('TTS.urls')),
-    path('STT/', include('STT.urls')),
+    #path("admin/", admin.site.urls),
+    path('', dashboard),
+    path('TTS/', tts_index),
+    path('STT/', stt_index),
 ]
