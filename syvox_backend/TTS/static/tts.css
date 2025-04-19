@@ -84,22 +84,6 @@ form textarea {
     border: 1px solid var(--border-color);
     border-radius: 4px;
     margin: 5px 0;
-    background-color: var(--blue-mid);
-    color: var(--text-main);
-}
-
-input[type="submit"] {
-    background-color: var(--green-main);
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    margin-top: 10px;
-}
-
-input[type="submit"]:hover {
-    background-color: var(--green-hover);
 }
 
 table {
@@ -108,7 +92,6 @@ table {
     font-size: 14px;
     background-color: var(--blue-light);
     color: var(--text-main);
-    border-collapse: collapse;
 }
 
 thead {
@@ -122,14 +105,6 @@ td {
     padding: 10px;
     border: 1px solid var(--border-color);
     text-align: center;
-}
-
-tr:nth-child(even) {
-    background-color: #161b22;
-}
-
-tr:hover {
-    background-color: #21262d;
 }
 
 button {

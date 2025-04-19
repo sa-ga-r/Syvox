@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>TTS Jobs List</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'tts.css' %}">
 </head>
 
 <body>
@@ -26,12 +26,12 @@
     <div id="form-container">
         <h2>Create New TTS Job</h2>
         <form id="ttsForm">
-            <label for="job_name">Job Name:</label><br>
-            <input type="text" id="job_name" name="job_name" placeholder="Enter Job Name" required><br><br>
+            <label for="job_name">Job Name:</label>
+            <input type="text" id="job_name" name="job_name" placeholder="Enter Job Name" required>
 
-            <label for="description">Description:</label><br>
-            <textarea id="description" name="description" rows="5" cols="40"
-                placeholder="Enter text to convert to speech" required></textarea><br><br>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="5" placeholder="Enter text to convert to speech"
+                required></textarea>
 
             <input type="submit" value="Create New Job">
         </form>
@@ -43,7 +43,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>SR.No</th>
+                    <th>SR</th>
                     <th>Job Title</th>
                     <th>Description</th>
                     <th>Created Date</th>
@@ -54,15 +54,17 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody id="jobsTableBody"></tbody>
+            <tbody id="jobsTableBody">
+                <tr>
+                    <td colspan="9">Loading...</td>
+                </tr>
+            </tbody>
         </table>
     </div>
 
     <script src="{% static 'tts.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-    <script>
-        eruda.init();
-    </script>
+    <script>eruda.init();</script>
 </body>
 
 </html>
