@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
         formData.append("job_name", jobName);
         formData.append("description", description);
 
-        fetch('/stt_create_job/', {
+        fetch('STT/stt_create_job/', {
             method: 'POST',
             body: formData
         })
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function fetchJobs() {
-    fetch('/stt_jobs/')
+    fetch('STT/stt_jobs/')
         .then(response => response.json())
         .then(data => {
             const tableBody = document.getElementById('jobsTableBody');
@@ -62,7 +62,7 @@ function fetchJobs() {
 }
 
 function delete_job(jobId) {
-    fetch(`/stt_delete_job/${jobId}/`, {
+    fetch(`STT/stt_delete_job/${jobId}/`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ function delete_job(jobId) {
 }
 
 function gen_stt(jobId) {
-    fetch(`/gen_stt/${jobId}/`, {
+    fetch(`STT/gen_stt/${jobId}/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
