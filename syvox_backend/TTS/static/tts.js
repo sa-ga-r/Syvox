@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function fetchJobs() {
-    fetch(`TTS/tts_jobs/`)
+    fetch(`/TTS/tts_jobs/`)
         .then(response => response.json())
         .then(data => {
             const tableBody = document.getElementById('jobsTableBody');
